@@ -15,4 +15,14 @@ class Peserta extends Model
     {
         return $this->hasMany(MessageLog::class);
     }
+
+        protected $fillable = [
+        'posyandu_id',
+        'nama_penerima',
+        'hubungan_penerima',
+        'nama_peserta',
+        'jenis_peserta',
+        'nomor_whatsapp',
+        'status',
+    ];
 }

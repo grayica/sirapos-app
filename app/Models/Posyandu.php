@@ -15,4 +15,10 @@ class Posyandu extends Model
     {
         return $this->hasMany(Jadwal::class);
     }
+
+        protected $fillable = [
+        'nama_posyandu',
+        'dusun',
+        'lokasi',
+    ];
 }
