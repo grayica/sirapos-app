@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\JadwalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('posyandu', PosyanduController::class);
     Route::resource('peserta', PesertaController::class)
     ->parameters(['peserta' => 'peserta']);
+    Route::resource('jadwal', JadwalController::class)
+    ->parameters(['jadwal' => 'jadwal']);
 });
 
 require __DIR__.'/auth.php';

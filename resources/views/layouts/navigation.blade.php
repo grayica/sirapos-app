@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('peserta.index')" :active="request()->routeIs('peserta.*')">
                         {{ __('Peserta') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('jadwal.index')" :active="request()->routeIs('jadwal.*')">
+                        {{ __('Jadwal') }}
+                    </x-nav-link>
                 </div>
             </div>
 
