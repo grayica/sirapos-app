@@ -12,7 +12,11 @@ class MessageLogController extends Controller
      */
     public function index()
     {
-        //
+        $logs = MessageLog::with(['peserta', 'jadwal'])
+        ->latest()
+        ->paginate(10);
+
+        return view('message-log.index', compact('logs'));
     }
 
     /**

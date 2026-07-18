@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
 use App\Models\Posyandu;
+use App\Models\MessageLog;
+use App\Services\WhatsAppService;
 use Illuminate\Http\Request;
+
 
 class JadwalController extends Controller
 {
@@ -79,5 +82,14 @@ class JadwalController extends Controller
         return redirect()
             ->route('jadwal.index')
             ->with('success', 'Jadwal berhasil dihapus.');
+    }
+
+    public function sendReminder(Jadwal $jadwal, WhatsAppService $wa)
+    {
+         $wa->sendReminder($jadwal);
+
+        return redirect()
+            ->route('jadwal.index')
+            ->with('success', 'Reminder berhasil dikirim.');
     }
 }

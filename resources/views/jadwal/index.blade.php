@@ -89,9 +89,21 @@
 
                                     </td>
 
-                                    <td class="border px-4 py-3">
+                                   <td class="border px-4 py-3">
 
                                         <div class="flex justify-center gap-2">
+
+                                            <form action="{{ route('jadwal.send', $jadwal->id) }}" method="POST">
+
+                                                @csrf
+
+                                                <button
+                                                    type="submit"
+                                                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                                                    📲 Kirim
+                                                </button>
+
+                                            </form>
 
                                             <a href="{{ route('jadwal.edit', $jadwal->id) }}"
                                                 class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">

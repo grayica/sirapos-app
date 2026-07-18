@@ -39,7 +39,7 @@
                 <!-- Reminder Terkirim -->
                 <div class="bg-white rounded-xl shadow p-6">
                     <h3 class="text-gray-500 text-sm">Reminder Terkirim</h3>
-                    <p class="text-3xl font-bold mt-2">{{ $reminderTerkirim }}</p>
+                    <p class="text-3xl font-bold mt-2">{{ $sent }}</p>
                 </div>
 
             </div>

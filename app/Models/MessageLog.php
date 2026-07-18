@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class MessageLog extends Model
 {
-        public function peserta()
+    protected $fillable = [
+        'jadwal_id',
+        'peserta_id',
+        'message',
+        'status',
+        'provider_response',
+        'sent_at',
+    ];
+
+    public function peserta()
     {
         return $this->belongsTo(Peserta::class);
     }

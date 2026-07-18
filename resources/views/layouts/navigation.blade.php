@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('jadwal.index')" :active="request()->routeIs('jadwal.*')">
                         {{ __('Jadwal') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('message-log.index')" :active="request()->routeIs('message-log.*')">
+                        {{ __('Message Log') }}
+                    </x-nav-link>
                 </div>
             </div>
 

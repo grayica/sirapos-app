@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\MessageLogController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +26,12 @@ Route::middleware('auth')->group(function () {
     ->parameters(['peserta' => 'peserta']);
     Route::resource('jadwal', JadwalController::class)
     ->parameters(['jadwal' => 'jadwal']);
+    Route::resource('message-log', MessageLogController::class)
+    ->only(['index', 'show']);
+    Route::post(
+    '/jadwal/{jadwal}/send',
+    [JadwalController::class, 'sendReminder']
+    )->name('jadwal.send');
 });
 
 require __DIR__.'/auth.php';
