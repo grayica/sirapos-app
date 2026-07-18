@@ -11,9 +11,17 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <!-- Total Posyandu -->
-                <div class="bg-white rounded-xl shadow p-6">
+                <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
                     <h3 class="text-gray-500 text-sm">Total Posyandu</h3>
-                    <p class="text-3xl font-bold mt-2">{{ $totalPosyandu }}</p>
+
+                    <p class="text-3xl font-bold mt-2">
+                        {{ $totalPosyandu }}
+                    </p>
+
+                    <a href="{{ route('posyandu.index') }}"
+                    class="text-blue-600 text-sm mt-4 inline-block">
+                        Lihat Data →
+                    </a>
                 </div>
 
                 <!-- Total Peserta -->
