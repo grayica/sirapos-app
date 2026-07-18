@@ -35,7 +35,7 @@ class JadwalController extends Controller
         ]);
 
         Jadwal::create($request->all());
-    
+
         return redirect()
             ->route('jadwal.index')
             ->with('success', 'Jadwal berhasil ditambahkan.');
@@ -43,21 +43,41 @@ class JadwalController extends Controller
 
     public function show(Jadwal $jadwal)
     {
-        //
+         $posyandus = Posyandu::all();
+
+    return view('jadwal.edit', compact('jadwal', 'posyandus'));
     }
 
     public function edit(Jadwal $jadwal)
     {
-        //
+         $posyandus = Posyandu::all();
+
+        return view('jadwal.edit', compact('jadwal', 'posyandus'));
     }
 
     public function update(Request $request, Jadwal $jadwal)
     {
-        //
+        $request->validate([
+        'posyandu_id' => 'required|exists:posyandus,id',
+        'tanggal' => 'required|date',
+        'jam' => 'required',
+        'lokasi' => 'required|string|max:255',
+        'status' => 'required',
+        ]);
+
+        $jadwal->update($request->all());
+
+        return redirect()
+            ->route('jadwal.index')
+            ->with('success', 'Jadwal berhasil diperbarui.');
     }
 
     public function destroy(Jadwal $jadwal)
     {
-        //
+         $jadwal->delete();
+
+        return redirect()
+            ->route('jadwal.index')
+            ->with('success', 'Jadwal berhasil dihapus.');
     }
 }
