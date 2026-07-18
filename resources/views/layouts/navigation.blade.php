@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('posyandu.index')" :active="request()->routeIs('posyandu.*')">
                         {{ __('Posyandu') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('peserta.index')" :active="request()->routeIs('peserta.*')">
+                        {{ __('Peserta') }}
+                    </x-nav-link>
                 </div>
             </div>
 
