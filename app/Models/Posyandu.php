@@ -7,7 +7,7 @@ use App\Models\Jadwal;
 
 class Posyandu extends Model
 {
-        public function pesertas()
+    public function pesertas()
     {
         return $this->hasMany(Peserta::class);
     }
@@ -17,9 +17,14 @@ class Posyandu extends Model
         return $this->hasMany(Jadwal::class);
     }
 
-        protected $fillable = [
+    protected $fillable = [
         'nama_posyandu',
         'dusun',
         'lokasi',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

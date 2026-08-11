@@ -13,16 +13,23 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@sirapos.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::firstOrCreate(
 
-        $this->call([
-            PosyanduSeeder::class,
-            PesertaSeeder::class,
-            JadwalSeeder::class,
-        ]);
+            [
+                'email' => 'admin@sirapos.id',
+            ],
+
+            [
+
+                'name' => 'Super Admin',
+
+                'password' => Hash::make('admin123'),
+
+                'role' => 'super_admin',
+
+                'status' => 'Aktif',
+
+            ]
+        );
     }
 }

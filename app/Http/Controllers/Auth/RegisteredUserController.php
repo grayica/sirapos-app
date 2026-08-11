@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\Models\Posyandu;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +21,12 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $posyandus = Posyandu::orderBy('nama_posyandu')->get();
+
+        return view(
+            'auth.register',
+            compact('posyandus')
+        );
     }
 
     /**
@@ -31,21 +37,53 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:' . User::class
+            ],
+
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::defaults()
+            ],
+
+            'posyandu_id' => [
+                'required',
+                'exists:posyandus,id',
+            ],
+
         ]);
 
         $user = User::create([
+
             'name' => $request->name,
+
             'email' => $request->email,
+
             'password' => Hash::make($request->password),
+
+            'role' => 'worker',
+
+            'status' => 'Pending',
+
+            'posyandu_id' => $request->posyandu_id,
+
         ]);
+
+        $superAdmins = User::where('role', 'Super Admin')->get();
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect()
+            ->route('login')
+            ->with('success', 'Pendaftaran berhasil. Akun Anda sedang menunggu persetujuan Administrator.');
     }
 }

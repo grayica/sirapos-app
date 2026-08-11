@@ -8,18 +8,21 @@ use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withSchedule(function (Schedule $schedule) {
         $schedule->command('reminder:send')->dailyAt('07:00');
     })
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+    ->withMiddleware(function ($middleware) {
+
+        $middleware->alias([
+            'super_admin' => \App\Http\Middleware\SuperAdminMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*'),
+            fn(Request $request) => $request->is('api/*'),
         );
     })->create();

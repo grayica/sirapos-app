@@ -19,5 +19,4 @@ class Jadwal extends Model
     {
         return $this->belongsTo(Posyandu::class);
     }
-
 }

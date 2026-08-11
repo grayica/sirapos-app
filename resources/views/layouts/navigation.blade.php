@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }"  class="bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm sticky top-0 z-50">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,7 +6,41 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600
+                                flex items-center justify-center shadow-lg">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="w-6 h-6 text-white"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor">
+
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 14V6a2 2 0 00-2-2h-2V2H9v2H7a2 2 0 00-2 2v8m14 0v6H5v-6m14 0H5m4-4h6"/>
+
+                                    </svg>
+
+                            </div>
+
+                                <div>
+
+                                <h1 class="font-extrabold text-slate-800 tracking-wide text-lg">
+
+                                    SIRAPOS
+
+                                </h1>
+
+                                <p class="text-xs text-gray-500">
+
+                                    Sistem Informasi Reminder Posyandu
+
+                                </p>
+
+                            </div>
+                        </div>
                     </a>
                 </div>
 
@@ -27,6 +61,7 @@
                     <x-nav-link :href="route('message-log.index')" :active="request()->routeIs('message-log.*')">
                         {{ __('Message Log') }}
                     </x-nav-link>
+                    
                 </div>
             </div>
 
@@ -35,7 +70,40 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div class="flex items-center gap-3">
+
+                            <div
+                                class="w-10 h-10 rounded-full
+                                    bg-gradient-to-r
+                                    from-emerald-500
+                                    to-teal-600
+                                    text-white
+                                    font-bold
+                                    flex
+                                    items-center
+                                    justify-center">
+
+                                {{ strtoupper(substr(Auth::user()->name,0,1)) }}
+
+                            </div>
+
+                            <div class="text-left">
+
+                                <div class="font-semibold text-gray-700">
+
+                                    {{ Auth::user()->name }}
+
+                                </div>
+
+                                <div class="text-xs text-gray-500">
+
+                                    Administrator
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

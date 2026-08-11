@@ -15,29 +15,44 @@
 
                     <div class="mb-4">
                         <label class="block mb-2">Nama Posyandu</label>
-                        <input type="text"
-                               name="nama_posyandu"
-                               value="{{ old('nama_posyandu', $posyandu->nama_posyandu) }}"
-                               class="w-full border rounded-lg px-4 py-2"
-                               required>
+
+                        <input
+                            type="text"
+                            name="nama_posyandu"
+                            value="{{ old('nama_posyandu', $posyandu->nama_posyandu) }}"
+                            class="w-full rounded-lg px-4 py-2 border @error('nama_posyandu') border-red-500 @else border-gray-300 @enderror">
+
+                        @error('nama_posyandu')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label class="block mb-2">Dusun</label>
-                        <input type="text"
-                               name="dusun"
-                               value="{{ old('dusun', $posyandu->dusun) }}"
-                               class="w-full border rounded-lg px-4 py-2"
-                               required>
+
+                        <input
+                            type="text"
+                            name="dusun"
+                            value="{{ old('dusun', $posyandu->dusun) }}"
+                            class="w-full rounded-lg px-4 py-2 border @error('dusun') border-red-500 @else border-gray-300 @enderror">
+
+                        @error('dusun')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-6">
                         <label class="block mb-2">Lokasi</label>
-                        <input type="text"
-                               name="lokasi"
-                               value="{{ old('lokasi', $posyandu->lokasi) }}"
-                               class="w-full border rounded-lg px-4 py-2"
-                               required>
+
+                        <input
+                            type="text"
+                            name="lokasi"
+                            value="{{ old('lokasi', $posyandu->lokasi) }}"
+                            class="w-full rounded-lg px-4 py-2 border @error('lokasi') border-red-500 @else border-gray-300 @enderror">
+
+                        @error('lokasi')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex gap-3">
@@ -53,17 +68,6 @@
                     </div>
 
                 </form>
-
-                @if ($errors->any())
-                    <div class="mb-4 rounded-lg bg-red-100 border border-red-300 text-red-700 p-4">
-                        <ul class="list-disc list-inside">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
             </div>
         </div>
     </div>

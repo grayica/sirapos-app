@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -28,6 +29,25 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+
+        if ($user->status == 'Pending') {
+
+            Auth::logout();
+
+            return back()->withErrors([
+                'email' => 'Akun Anda sedang menunggu persetujuan Administrator.'
+            ])->onlyInput('email');
+        }
+
+        if ($user->status == 'Nonaktif') {
+
+            Auth::logout();
+
+            return back()->withErrors([
+                'email' => 'Akun Anda telah dinonaktifkan.'
+            ])->onlyInput('email');
+        }
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

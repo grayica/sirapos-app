@@ -10,6 +10,7 @@ class MessageLog extends Model
         'jadwal_id',
         'peserta_id',
         'message',
+        'reminder_type',
         'status',
         'provider_response',
         'sent_at',

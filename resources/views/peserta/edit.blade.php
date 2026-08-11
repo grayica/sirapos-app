@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-2xl font-bold">
-            Tambah Peserta
+            Edit Peserta
         </h2>
     </x-slot>
 
@@ -10,139 +10,29 @@
 
             <div class="bg-white shadow rounded-lg p-6">
 
-                @if($errors->any())
-                    <div class="mb-4 rounded-lg bg-red-100 border border-red-300 text-red-700 p-4">
-                        <ul class="list-disc list-inside">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <form
+                    action="{{ route('peserta.update', $peserta->id) }}"
+                    method="POST">
 
-                <form action="{{ route('peserta.update', $peserta->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+                    @csrf
+                    @method('PUT')
 
-                    <div class="mb-4">
-                        <label class="block mb-2">Posyandu</label>
+                    @include('peserta._form')
 
-                        <select name="posyandu_id"
-                                class="w-full border rounded-lg px-4 py-2"
-                                required>
+                    <div class="flex gap-3 mt-6">
 
-                            <option value="">-- Pilih Posyandu --</option>
-
-                            @foreach($posyandus as $posyandu)
-                            <option value="{{ $posyandu->id }}"
-                                {{ old('posyandu_id', $peserta->posyandu_id) == $posyandu->id ? 'selected' : '' }}>
-                                {{ $posyandu->nama_posyandu }}
-                            </option>
-                            @endforeach
-
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block mb-2">Nama Penerima</label>
-                        <input type="text"
-                            name="nama_penerima"
-                            value="{{ old('nama_penerima', $peserta->nama_penerima) }}"
-                            class="w-full border rounded-lg px-4 py-2"
-                            required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block mb-2">Hubungan Penerima</label>
-
-                        <select name="hubungan_penerima"
-                                class="w-full border rounded-lg px-4 py-2">
-
-                            <option value="Ibu"
-                                {{ old('hubungan_penerima', $peserta->hubungan_penerima) == 'Ibu' ? 'selected' : '' }}>
-                                Ibu
-                            </option>
-
-                            <option value="Ayah"
-                                {{ old('hubungan_penerima', $peserta->hubungan_penerima) == 'Ayah' ? 'selected' : '' }}>
-                                Ayah
-                            </option>
-
-                            <option value="Wali"
-                                {{ old('hubungan_penerima', $peserta->hubungan_penerima) == 'Wali' ? 'selected' : '' }}>
-                                Wali
-                            </option>
-
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block mb-2">Nama Peserta</label>
-                        <input type="text"
-                               name="nama_peserta"
-                               value="{{ old('nama_peserta', $peserta->nama_peserta) }}"
-                               class="w-full border rounded-lg px-4 py-2"
-                               required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block mb-2">Jenis Peserta</label>
-
-                        <select name="jenis_peserta"
-                                class="w-full border rounded-lg px-4 py-2">
-
-                            <option value="Balita"
-                                {{ old('jenis_peserta', $peserta->jenis_peserta) == 'Balita' ? 'selected' : '' }}>
-                                Balita
-                            </option>
-
-                            <option value="Ibu Hamil"
-                                {{ old('jenis_peserta', $peserta->jenis_peserta) == 'Ibu Hamil' ? 'selected' : '' }}>
-                                Ibu Hamil
-                            </option>
-
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block mb-2">Nomor WhatsApp</label>
-                        <input type="text"
-                               name="nomor_whatsapp"
-                               value="{{ old('nomor_whatsapp', $peserta->nomor_whatsapp) }}"
-                               class="w-full border rounded-lg px-4 py-2"
-                               placeholder="08xxxxxxxxxx"
-                               required>
-                    </div>
-
-                    <div class="mb-6">
-                        <label class="block mb-2">Status</label>
-
-                        <select name="status"
-                                class="w-full border rounded-lg px-4 py-2">
-
-                            <option value="Aktif"
-                                {{ old('status', $peserta->status) == 'Aktif' ? 'selected' : '' }}>
-                                Aktif
-                            </option>
-
-                            <option value="Tidak Aktif"
-                                {{ old('status', $peserta->status) == 'Tidak Aktif' ? 'selected' : '' }}>
-                                Tidak Aktif
-                            </option>
-
-                        </select>
-                    </div>
-
-                    <div class="flex gap-3">
-                        <button type="submit"
-                                class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
-                            Simpan
+                        <button
+                            type="submit"
+                            class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+                            Simpan Perubahan
                         </button>
 
-                        <a href="{{ route('peserta.index') }}"
-                           class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600">
+                        <a
+                            href="{{ route('peserta.index') }}"
+                            class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600">
                             Kembali
                         </a>
+
                     </div>
 
                 </form>

@@ -9,19 +9,25 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Posyandu;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role',
+        'status',
+        'posyandu_id',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
     protected function casts(): array
     {
         return [
@@ -29,4 +35,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super_admin';
+    }
+
+    public function isWorker(): bool
+    {
+        return $this->role === 'worker';
+    }
+
+    public function isAktif(): bool
+    {
+        return $this->status === 'Aktif';
+    }
+
+    public function posyandu()
+    {
+        return $this->belongsTo(Posyandu::class);
+    }
+
 }
