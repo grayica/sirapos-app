@@ -24,10 +24,9 @@
 
         </div>
         {{-- Menu --}}
-        <nav class="flex-1 px-4 py-6 space-y-3">
-
+        <nav class="relative z-50 flex-1 px-4 py-6 space-y-3">
             <a href="{{ route('dashboard') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                class="relative z-50 items-center  gap-3 px-4 py-3 rounded-xl transition
                {{ request()->routeIs('dashboard') ? 'bg-emerald-500 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-300' }}">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -40,7 +39,7 @@
 
             @if (auth()->user()->isSuperAdmin())
                 <a href="{{ route('posyandu.index') }}"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                    class="relative z-50 items-center gap-3 px-4 py-3 rounded-xl transition
        {{ request()->routeIs('posyandu.*') ? 'bg-emerald-500 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-300' }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -57,7 +56,7 @@
             @endif
 
             <a href="{{ route('peserta.index') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                class="relative z-50 items-center gap-3 px-4 py-3 rounded-xl transition
                {{ request()->routeIs('peserta.*') ? 'bg-emerald-500 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-300' }}">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -70,7 +69,7 @@
             </a>
 
             <a href="{{ route('jadwal.index') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                class="relative z-50 items-center gap-3 px-4 py-3 rounded-xl transition
                {{ request()->routeIs('jadwal.*') ? 'bg-emerald-500 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-300' }}">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -83,7 +82,7 @@
             </a>
 
             <a href="{{ route('message-log.index') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                class="relative z-50 items-center gap-3 px-4 py-3 rounded-xl transition
                {{ request()->routeIs('message-log.*') ? 'bg-emerald-500 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-300' }}">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -97,7 +96,7 @@
 
             @if (auth()->user()->isSuperAdmin())
                 <a href="{{ route('users.index') }}"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                    class="relative z-50 items-center gap-3 px-4 py-3 rounded-xl transition
 {{ request()->routeIs('users.*') ? 'bg-emerald-500 text-white shadow-lg' : 'hover:bg-slate-700 text-slate-300' }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
