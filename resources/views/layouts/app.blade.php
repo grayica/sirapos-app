@@ -120,38 +120,40 @@
         });
     </script>
 
-<script>
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const menuButton = document.getElementById('menuButton');
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const menuButton = document.getElementById('menuButton');
 
-    if(menuButton){
+        function openSidebar() {
+            sidebar?.classList.remove('-translate-x-full');
+            overlay?.classList.remove('hidden');
+        }
 
-    menuButton.addEventListener('click',()=>{
+        function closeSidebar() {
+            sidebar?.classList.add('-translate-x-full');
+            overlay?.classList.add('hidden');
+        }
 
-    sidebar.classList.remove('-translate-x-full');
+        menuButton?.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openSidebar();
+        });
 
-    overlay.classList.remove('hidden');
+        overlay?.addEventListener('click', function() {
+            closeSidebar();
+        });
 
-    });
+        // Jangan tutup sidebar ketika link menu diklik.
+        sidebar?.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Biarkan browser melakukan navigasi normal.
+            });
+        });
+    </script>
 
-    }
-
-    if(overlay){
-
-    overlay.addEventListener('click',()=>{
-
-    sidebar.classList.add('-translate-x-full');
-
-    overlay.classList.add('hidden');
-
-    });
-
-    }
-
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 
